@@ -5,11 +5,33 @@ class Headcount < ActiveRecord::Base
   belongs_to :cost_center
   belongs_to :budget
 
-  after_save :calculate_expenses
+  after_create :calculate_monthly_expenses
 
-  def calculate_expenses
-    annual_cost = self.salary * (1 + self.bonus) * (1 + self.budget.tax_rate)
-    remaining_days = (self.end_date - self.start_date).to_int
-    p self.start_date.day
+  def calculate_monthly_expenses
+    daily_cost = get_daily_cost(self)
+    month_days = get_month_days(self.start_date, self.end_date)
+    p month_days
+    month_days.each do |month, days|
+      amount = days * daily_cost
+      expense = Expense.create(month: month, year: start_date.year, amount: amount)
+      self.expenses << expense
+      self.budget.expenses << expense
+    end
+  end
+
+  def get_daily_cost(headcount)
+    annual_cost = headcount.salary * (1 + headcount.bonus) * (1 + headcount.budget.tax_rate)
+    remaining_days = (headcount.end_date - headcount.start_date).to_int
+    annual_cost / 365
+  end
+
+  def get_month_days(start_date, end_date)
+    month_days = {}
+    months = (start_date.month..end_date.month).to_a
+    start_month_days = Time.days_in_month(start_date.month, start_date.year) - start_date.day + 1
+    month_days[start_date.month] = start_month_days
+    months[1..-2].each {|month| month_days[month] = Time.days_in_month(month, start_date.year)}
+    month_days[end_date.month] = end_date.day
+    month_days
   end
 end

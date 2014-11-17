@@ -76,8 +76,10 @@ end
 
 class CreateHeadcount
   def self.new
-    month = (rand(12) + 1).to_s
-    Headcount.new(start_date: '2014-' + month + '-19', end_date: '2014-12-31', headcount_type: 'regular', salary: rand(200000)+100000, bonus: rand(), count: rand(3) + 1)
+    month = (rand(12) + 1)
+    month_days = Time.days_in_month(month, 2014)
+    day = (rand(month_days) + 1)
+    Headcount.new(start_date: '2014-' + month.to_s + '-' + day.to_s, end_date: '2014-12-31', headcount_type: 'regular', salary: rand(200000)+100000, bonus: rand(), count: rand(3) + 1)
   end
 
   def self.add_to_cost_centers(head)
