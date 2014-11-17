@@ -8,7 +8,6 @@ class CreateExpenses < ActiveRecord::Migration
       t.timestamps
       t.belongs_to :headcount
       t.belongs_to :expense_type
-      t.belongs_to :budget
     end
   end
 end

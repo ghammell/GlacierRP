@@ -15,7 +15,6 @@ class Headcount < ActiveRecord::Base
       amount = days * daily_cost
       expense = Expense.create(month: month, year: start_date.year, amount: amount)
       self.expenses << expense
-      self.budget.expenses << expense
     end
   end
 

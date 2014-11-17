@@ -74,7 +74,6 @@ ActiveRecord::Schema.define(version: 20141117053826) do
     t.datetime "updated_at"
     t.integer  "headcount_id"
     t.integer  "expense_type_id"
-    t.integer  "budget_id"
   end
 
   create_table "function_cost_centers", force: true do |t|
