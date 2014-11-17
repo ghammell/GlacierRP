@@ -4,13 +4,14 @@ class CreateHeadcounts < ActiveRecord::Migration
       t.references :manager
       t.date :start_date
       t.date :end_date
-      t.string :type
+      t.string :headcount_type
       t.integer :salary
-      t.decimal :bonus
+      t.float :bonus
       t.integer :count
 
       t.timestamps
       t.belongs_to :cost_center
+      t.belongs_to :budget
     end
   end
 end

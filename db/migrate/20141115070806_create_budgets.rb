@@ -1,7 +1,8 @@
-class CreateBudgets < ActiveRecord::Migration
+  class CreateBudgets < ActiveRecord::Migration
   def change
     create_table :budgets do |t|
-      t.decimal :tax_rate
+      t.float :tax_rate
+      t.string :name
 
       t.timestamps
       t.belongs_to :user

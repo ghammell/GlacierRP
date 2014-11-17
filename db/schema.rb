@@ -11,16 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141117034703) do
+ActiveRecord::Schema.define(version: 20141117053826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "budgets", force: true do |t|
-    t.decimal  "tax_rate"
+    t.float    "tax_rate"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+  end
+
+  create_table "business_unit_functions", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "function_id"
+    t.integer  "business_unit_id"
   end
 
   create_table "business_units", force: true do |t|
@@ -37,6 +45,7 @@ ActiveRecord::Schema.define(version: 20141117034703) do
   end
 
   create_table "cost_centers", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "function_id"
@@ -49,23 +58,18 @@ ActiveRecord::Schema.define(version: 20141117034703) do
     t.integer  "company_id"
   end
 
-  create_table "expense_type_categories", force: true do |t|
-    t.integer  "expense_type_id"
-    t.integer  "expense_category_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "expense_types", force: true do |t|
     t.string   "name"
     t.string   "account_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "expense_category_id"
   end
 
   create_table "expenses", force: true do |t|
     t.string   "month"
-    t.decimal  "amount"
+    t.string   "year"
+    t.float    "amount"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "headcount_id"
@@ -73,24 +77,31 @@ ActiveRecord::Schema.define(version: 20141117034703) do
     t.integer  "budget_id"
   end
 
+  create_table "function_cost_centers", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "function_id"
+    t.integer  "cost_center_id"
+  end
+
   create_table "functions", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "business_unit_id"
   end
 
   create_table "headcounts", force: true do |t|
     t.integer  "manager_id"
     t.date     "start_date"
     t.date     "end_date"
-    t.string   "type"
+    t.string   "headcount_type"
     t.integer  "salary"
-    t.decimal  "bonus"
+    t.float    "bonus"
     t.integer  "count"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "cost_center_id"
+    t.integer  "budget_id"
   end
 
   create_table "users", force: true do |t|

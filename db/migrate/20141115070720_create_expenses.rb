@@ -2,7 +2,8 @@ class CreateExpenses < ActiveRecord::Migration
   def change
     create_table :expenses do |t|
       t.string :month
-      t.decimal :amount
+      t.string :year
+      t.float :amount
 
       t.timestamps
       t.belongs_to :headcount

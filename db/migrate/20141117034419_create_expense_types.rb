@@ -5,6 +5,7 @@ class CreateExpenseTypes < ActiveRecord::Migration
       t.string :account_id
 
       t.timestamps
+      t.belongs_to :expense_category
     end
   end
 end

@@ -4,7 +4,6 @@ class CreateFunctions < ActiveRecord::Migration
       t.string :name
 
       t.timestamps
-      t.belongs_to :business_unit
     end
   end
 end
