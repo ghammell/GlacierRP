@@ -3,6 +3,7 @@ class CreateCostCenters < ActiveRecord::Migration
     create_table :cost_centers do |t|
 
       t.timestamps
+      t.belongs_to :function
     end
   end
 end
