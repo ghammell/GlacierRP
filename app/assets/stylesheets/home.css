@@ -1,9 +1,9 @@
 body {
-  background: #7f8c8d;
+  margin:0;
+  background: #E6EAE6;
+  font-family: "Helvetica Neue", "Helvetica", sans-serif;
+}
 
-  header {
-    h1 {
-      color: blue;
-    }
-  }
+header {
+  background-color: blue;
 }
