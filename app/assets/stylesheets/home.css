@@ -1,0 +1,9 @@
+body {
+  background: #7f8c8d;
+
+  header {
+    h1 {
+      color: blue;
+    }
+  }
+}
