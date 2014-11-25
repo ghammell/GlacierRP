@@ -13,6 +13,14 @@ body {
       float: left;
     }
 
+    .user_controls {
+      transition: all 0.2s;
+    }
+
+    .user_controls:hover {
+      color: white;
+    }
+
     #user_buttons {
       float: right;
 

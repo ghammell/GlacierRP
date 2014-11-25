@@ -4,7 +4,7 @@ $(document).ready( function() {
 })
 
 var BindUserControls = function(button, path) {
-  $(button).click( function() {
+  $(button).on('click', function() {
     $.ajax({
       method: 'GET',
       url: path
@@ -14,5 +14,6 @@ var BindUserControls = function(button, path) {
       $('.modal-content').prepend(data)
       $('.modal').modal('show')
     })
+    $('.user_controls').off()
   })
 }
