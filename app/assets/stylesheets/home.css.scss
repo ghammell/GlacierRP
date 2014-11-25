@@ -6,9 +6,34 @@ body {
   header {
     border-bottom: 1px solid white;
     padding: 10px;
+    overflow: auto;
     h1 {
       color: #2c3e50;
       margin: 0;
+      float: left;
+    }
+
+    #user_buttons {
+      float: right;
+
+      h1:hover {
+        cursor: pointer;
+      }
+
+      ul {
+        margin: 0;
+        li {
+          list-style-type: none;
+          display: inline-block;
+        }
+      }
+
+    }
+  }
+
+  .modal-footer {
+    .shared_links {
+      float: left;
     }
   }
 }
